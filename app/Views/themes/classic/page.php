@@ -27,11 +27,6 @@
                     </div>
                 </div>
             </div>
-            <?php if ($page->right_column_active == 1): ?>
-                <div id="sidebar" class="col-sm-4">
-                    <?= loadView('partials/_sidebar'); ?>
-                </div>
-            <?php endif; ?>
         </div>
     </div>
 </div>

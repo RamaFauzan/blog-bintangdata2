@@ -1,50 +1,6 @@
 <?= view('common/_json_ld'); ?>
 <footer id="footer">
-    <div class="footer-inner">
-        <div class="container-xl">
-            <div class="row justify-content-between">
-                <div class="col-sm-12 col-md-6 col-lg-4 footer-widget footer-widget-about">
-                    <div class="footer-logo">
-                        <img src="<?= getLogoFooter(); ?>" alt="logo" class="logo" width="<?= getLogoSize('width'); ?>" height="<?= getLogoSize('height'); ?>">
-                    </div>
-                    <div class="footer-about">
-                        <?= esc($baseSettings->about_footer); ?>
-                    </div>
-                    <div class="footer-social-links">
-                        <ul>
-                            <?= view('common/_social_media_links', ['rssHide' => false]); ?>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 footer-widget">
-                    <h4 class="widget-title"><?= trans("trending_posts"); ?></h4>
-                    <div class="footer-posts">
-                        <?php $trendingPosts = getTrendingPosts($baseLatestCategoryPosts);
-                        if (!empty($trendingPosts)):
-                            foreach ($trendingPosts as $item): ?>
-                                <?= loadView('post/_post_item_small', ['postItem' => $item, 'showLabel' => false]); ?>
-                            <?php endforeach;
-                        endif; ?>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 footer-widget">
-                    <?php if ($generalSettings->newsletter_status == 1): ?>
-                        <h4 class="widget-title"><?= trans("newsletter"); ?></h4>
-                        <div class="newsletter">
-                            <p class="description"><?= trans("newsletter_desc"); ?></p>
-                            <form id="form_newsletter_footer" class="form-newsletter">
-                                <div class="newsletter-inputs">
-                                    <input type="email" name="email" class="form-control form-input newsletter-input" maxlength="199" placeholder="<?= trans("email"); ?>">
-                                    <button type="submit" name="submit" value="form" class="btn btn-custom newsletter-button"><?= trans("subscribe"); ?></button>
-                                </div>
-                                <input type="text" name="url">
-                            </form>
-                        </div>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="footer-copyright">
         <div class="container-xl">
             <div class="row align-items-center">

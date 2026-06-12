@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => '103.157.27.12',
         'username' => 'root',
         'password' => 'L4hTub3@SQL!',
-        'database' => 'Br1tanet',
+        'database' => 'w3b_BintangData',
         // 'hostname' => 'localhost',
         // 'username' => 'root',
         // 'password' => '',
