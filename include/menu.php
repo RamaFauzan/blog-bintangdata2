@@ -34,7 +34,7 @@
 
 <div class="dropdown-grid-item bg-white">
     <h6 class="drop-heading">Products</h6>
-    <a href="video-sharing-live-streaming-platform.html" class="dropdown-link">
+    <a href="video-sharing-live-streaming-platform" class="dropdown-link">
         <div class="drop-title">Video Sharing & Live Streaming Platform</div>
     </a>
     <a href="#" class="dropdown-link">
