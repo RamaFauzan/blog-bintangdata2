@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Social Networking Platform | Bintangdata</title>
+  <title>Influencer & Brand Collaboration Platform | Bintangdata</title>
   <style>
     :root {
       --bg: #101010;
@@ -51,6 +50,110 @@
       margin: 0 auto;
     }
 
+    .navbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(16, 16, 16, 0.84);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: -1.2px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--orange);
+      border-radius: 50%;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-mark::before,
+    .logo-mark::after {
+      content: "";
+      position: absolute;
+      width: 46px;
+      height: 12px;
+      border: 3px solid var(--orange);
+      border-radius: 50%;
+      transform: rotate(35deg);
+    }
+
+    .logo-mark::after {
+      transform: rotate(-35deg);
+    }
+
+    .logo-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 999px;
+      z-index: 1;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: #f0f0f0;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .nav-menu a,
+    .nav-menu button {
+      color: #f0f0f0;
+      opacity: 0.9;
+      background: transparent;
+      border: 0;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu button:hover {
+      opacity: 1;
+      color: var(--orange);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-weight: 600;
+    }
+
+    .theme-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: #fff;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -86,10 +189,123 @@
       background: rgba(255, 255, 255, 0.08);
     }
 
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 44px;
+      left: 50%;
+      transform: translateX(-50%) translateY(14px);
+      width: min(820px, calc(100vw - 40px));
+      background: #070500;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: 0.25s ease;
+      overflow: hidden;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 290px;
+      gap: 32px;
+      padding: 28px 32px;
+    }
+
+    .dropdown h4 {
+      margin-bottom: 16px;
+      font-size: 17px;
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--muted) !important;
+      padding: 10px 0;
+      line-height: 1.45;
+    }
+
+    .dropdown-item.active,
+    .dropdown-item:hover {
+      color: #fff !important;
+    }
+
+    .dropdown-preview {
+      min-height: 260px;
+      border-radius: 18px;
+      background:
+        linear-gradient(160deg, rgba(36, 107, 255, 0.45), rgba(18, 18, 18, 0.6)),
+        radial-gradient(circle at 90% 10%, rgba(35, 191, 255, 0.8), transparent 30%),
+        linear-gradient(135deg, #0d244d, #08081a 48%, #2c0f5a);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dropdown-preview::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      right: -70px;
+      bottom: -70px;
+      background: rgba(255, 122, 24, 0.42);
+      border-radius: 50%;
+      filter: blur(6px);
+    }
+
+    .preview-card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .preview-card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .preview-card span {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .mobile-toggle {
+      display: none;
+      background: transparent;
+      color: #fff;
+      border: 1px solid var(--border);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 22px;
+    }
+
     .hero {
       position: relative;
       min-height: 100vh;
-      padding: 80px 0 100px;
+      padding: 150px 0 100px;
       background:
         radial-gradient(circle at 83% 17%, rgba(35, 191, 255, 0.08), transparent 25%),
         radial-gradient(circle at 8% 98%, rgba(255, 196, 0, 0.18), transparent 22%),
@@ -250,11 +466,11 @@
       right: 0;
       top: 74px;
       width: min(650px, 100%);
-      filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
+      filter: drop-shadow(0 40px 60px rgba(0,0,0,0.55));
     }
 
     .laptop-screen {
-      border: 4px solid rgba(255, 255, 255, 0.56);
+      border: 4px solid rgba(255,255,255,0.56);
       background: #080a14;
       border-radius: 22px 22px 10px 10px;
       padding: 18px;
@@ -275,7 +491,7 @@
       width: 180px;
       height: 24px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
     }
 
     .social-layout {
@@ -288,8 +504,8 @@
     .left-panel,
     .right-panel,
     .feed-panel {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 18px;
       padding: 14px;
       overflow: hidden;
@@ -299,8 +515,8 @@
       padding: 14px;
       border-radius: 16px;
       background:
-        radial-gradient(circle at 85% 0%, rgba(255, 61, 139, 0.35), transparent 32%),
-        linear-gradient(135deg, rgba(36, 107, 255, 0.26), rgba(255, 122, 24, 0.12));
+        radial-gradient(circle at 85% 0%, rgba(255,61,139,0.35), transparent 32%),
+        linear-gradient(135deg, rgba(36,107,255,0.26), rgba(255,122,24,0.12));
       margin-bottom: 12px;
     }
 
@@ -316,7 +532,7 @@
       height: 38px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--cyan), var(--primary));
-      border: 2px solid rgba(255, 255, 255, 0.25);
+      border: 2px solid rgba(255,255,255,0.25);
       flex: 0 0 auto;
     }
 
@@ -347,24 +563,19 @@
     .profile-mini span,
     .suggestion span,
     .post span {
-      color: rgba(255, 255, 255, 0.58);
+      color: rgba(255,255,255,0.58);
       font-size: 10px;
     }
 
     .menu-line {
       height: 28px;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
       margin-bottom: 9px;
     }
 
-    .menu-line:nth-child(3) {
-      width: 82%;
-    }
-
-    .menu-line:nth-child(4) {
-      width: 72%;
-    }
+    .menu-line:nth-child(3) { width: 82%; }
+    .menu-line:nth-child(4) { width: 72%; }
 
     .story-list {
       display: grid;
@@ -384,29 +595,21 @@
       background: linear-gradient(145deg, #246bff, #ff3d8b);
     }
 
-    .story:nth-child(2) {
-      background: linear-gradient(145deg, #23bfff, #7c3aed);
-    }
-
-    .story:nth-child(3) {
-      background: linear-gradient(145deg, #ff7a18, #ffc400);
-    }
-
-    .story:nth-child(4) {
-      background: linear-gradient(145deg, #32d583, #246bff);
-    }
+    .story:nth-child(2) { background: linear-gradient(145deg, #23bfff, #7c3aed); }
+    .story:nth-child(3) { background: linear-gradient(145deg, #ff7a18, #ffc400); }
+    .story:nth-child(4) { background: linear-gradient(145deg, #32d583, #246bff); }
 
     .composer {
       padding: 12px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.055);
+      background: rgba(255,255,255,0.055);
       margin-bottom: 12px;
     }
 
     .composer-bar {
       height: 32px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255,255,255,0.07);
       margin-bottom: 10px;
     }
 
@@ -419,13 +622,13 @@
     .composer-actions span {
       height: 24px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.055);
+      background: rgba(255,255,255,0.055);
     }
 
     .post {
       padding: 13px;
       border-radius: 17px;
-      background: rgba(255, 255, 255, 0.055);
+      background: rgba(255,255,255,0.055);
       margin-bottom: 12px;
     }
 
@@ -434,7 +637,7 @@
       border-radius: 14px;
       margin: 12px 0;
       background:
-        radial-gradient(circle at 28% 24%, rgba(255, 255, 255, 0.36), transparent 12%),
+        radial-gradient(circle at 28% 24%, rgba(255,255,255,0.36), transparent 12%),
         linear-gradient(135deg, #152b65, #7828ff 50%, #ff7a18);
     }
 
@@ -447,7 +650,7 @@
     .reaction-row span {
       height: 22px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
     }
 
     .panel-head {
@@ -477,7 +680,7 @@
       grid-template-columns: 32px 1fr;
       gap: 9px;
       align-items: center;
-      background: rgba(255, 255, 255, 0.045);
+      background: rgba(255,255,255,0.045);
       border-radius: 14px;
       padding: 8px;
     }
@@ -496,10 +699,10 @@
       bottom: 35px;
       width: 160px;
       background: #050607;
-      border: 3px solid rgba(255, 255, 255, 0.65);
+      border: 3px solid rgba(255,255,255,0.65);
       border-radius: 34px;
       padding: 10px;
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.65);
     }
 
     .phone-screen {
@@ -515,7 +718,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: rgba(255, 255, 255, 0.68);
+      color: rgba(255,255,255,0.68);
       font-size: 10px;
       font-weight: 800;
     }
@@ -535,7 +738,7 @@
     .phone-card {
       border-radius: 18px;
       padding: 10px;
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
     }
 
     .phone-media {
@@ -548,7 +751,7 @@
     .phone-row {
       height: 30px;
       border-radius: 11px;
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255,255,255,0.07);
     }
 
     section {
@@ -596,8 +799,8 @@
     }
 
     .feature-card {
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--radius);
       padding: 30px;
       min-height: 245px;
@@ -606,14 +809,14 @@
 
     .feature-card:hover {
       transform: translateY(-6px);
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255,255,255,0.07);
     }
 
     .feature-icon {
       width: 58px;
       height: 58px;
       border-radius: 18px;
-      background: rgba(36, 107, 255, 0.16);
+      background: rgba(36,107,255,0.16);
       display: grid;
       place-items: center;
       font-size: 28px;
@@ -622,12 +825,12 @@
 
     .feature-card:nth-child(2) .feature-icon,
     .feature-card:nth-child(5) .feature-icon {
-      background: rgba(255, 122, 24, 0.18);
+      background: rgba(255,122,24,0.18);
     }
 
     .feature-card:nth-child(3) .feature-icon,
     .feature-card:nth-child(6) .feature-icon {
-      background: rgba(35, 191, 255, 0.16);
+      background: rgba(35,191,255,0.16);
     }
 
     .feature-card h3 {
@@ -653,9 +856,9 @@
 
     .stat-card {
       background:
-        radial-gradient(circle at 85% 10%, rgba(35, 191, 255, 0.16), transparent 28%),
-        linear-gradient(145deg, rgba(36, 107, 255, 0.16), rgba(255, 122, 24, 0.06));
-      border: 1px solid rgba(255, 255, 255, 0.1);
+        radial-gradient(circle at 85% 10%, rgba(35,191,255,0.16), transparent 28%),
+        linear-gradient(145deg, rgba(36,107,255,0.16), rgba(255,122,24,0.06));
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 34px;
       padding: 34px;
       box-shadow: var(--shadow);
@@ -671,8 +874,8 @@
       min-height: 135px;
       border-radius: 22px;
       padding: 22px;
-      background: rgba(255, 255, 255, 0.055);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .stat-item strong {
@@ -699,8 +902,8 @@
       align-items: flex-start;
       padding: 20px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
     }
 
     .module-number {
@@ -734,10 +937,10 @@
       border-radius: 38px;
       padding: 70px 30px;
       background:
-        radial-gradient(circle at 20% 15%, rgba(255, 122, 24, 0.24), transparent 28%),
-        radial-gradient(circle at 80% 20%, rgba(35, 191, 255, 0.20), transparent 28%),
-        linear-gradient(145deg, rgba(36, 107, 255, 0.20), rgba(255, 255, 255, 0.05));
-      border: 1px solid rgba(255, 255, 255, 0.1);
+        radial-gradient(circle at 20% 15%, rgba(255,122,24,0.24), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(35,191,255,0.20), transparent 28%),
+        linear-gradient(145deg, rgba(36,107,255,0.20), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .cta-box h2 {
@@ -755,14 +958,31 @@
     }
 
     footer {
-      display: none;
+      background: #080808;
+      color: #a6a6a6;
+      padding: 34px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
     .footer-inner {
-      display: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
     }
 
     @media (max-width: 1024px) {
+      .nav-menu,
+      .nav-actions {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-grid;
+        place-items: center;
+      }
 
       .hero-grid,
       .split-grid {
@@ -788,7 +1008,7 @@
       }
 
       .hero {
-        padding-top: 60px;
+        padding-top: 122px;
       }
 
       .hero h1 {
@@ -845,8 +1065,63 @@
     }
   </style>
 </head>
-
 <body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo" aria-label="Bintangdata Home">
+        <span class="logo-mark"><span class="logo-dot"></span></span>
+        <span>bintangdata</span>
+      </a>
+
+      <nav class="nav-menu" aria-label="Main Navigation">
+        <a href="#home">Home</a>
+        <div class="dropdown">
+          <button type="button">Our Services⌄</button>
+          <div class="dropdown-menu">
+            <div class="dropdown-grid">
+              <div>
+                <h4>Development</h4>
+                <a href="#" class="dropdown-item">☰ Desktop Application</a>
+                <a href="#" class="dropdown-item">◈ Android Application</a>
+                <a href="#" class="dropdown-item">♙ iOS Application</a>
+                <a href="#" class="dropdown-item">⚡ Website Application Development</a>
+                <a href="#" class="dropdown-item">⌘ Custom Software Development</a>
+              </div>
+              <div>
+                <h4>Products</h4>
+                <a href="#" class="dropdown-item">Video Sharing & Live Streaming Platform</a>
+                <a href="#" class="dropdown-item">Social Networking Platform</a>
+                <a href="#" class="dropdown-item">Membership Community Platform</a>
+                <a href="#" class="dropdown-item active">Influencer & Brand Collaboration Platform</a>
+                <a href="#" class="dropdown-item">News & Media Publishing Platform</a>
+                <a href="#" class="dropdown-item">Social Commerce & Professional Platform</a>
+              </div>
+              <div class="dropdown-preview">
+                <div class="preview-card">
+                  <strong>Collaboration Platform</strong>
+                  <span>Connect brands and creators with campaign briefs, proposals, approvals, contracts, payments, and performance reports.</span>
+                </div>
+                <div class="preview-card">
+                  <strong>Campaign Ready</strong>
+                  <span>Manage creator discovery, partnership workflows, deliverables, media kits, tracking links, and ROI analytics.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#contact">Contact Us</a>
+      </nav>
+
+      <div class="nav-actions">
+        <span class="theme-icon">☾</span>
+        <a href="#signin">Sign In</a>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <button class="mobile-toggle" type="button" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
   <main>
     <section class="hero" id="home">
       <span class="shape-orange"></span>
@@ -855,11 +1130,10 @@
 
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Social Networking Platform Development</div>
-          <h1>Build the Future of <span>Connected Communities</span>.</h1>
+          <div class="eyebrow">Influencer & Brand Collaboration Platform Development</div>
+          <h1>Connect Brands with <span>Influencers</span>.</h1>
           <p>
-            We develop enterprise-grade social networking platforms for communities, creators, organizations, and
-            digital businesses that need scalable engagement features.
+            We develop influencer and brand collaboration platforms for agencies, creators, communities, and brands that need campaign management, creator discovery, proposals, contracts, payments, and performance analytics.
           </p>
 
           <div class="hero-buttons">
@@ -868,17 +1142,17 @@
           </div>
 
           <ul class="hero-points">
-            <li><span class="check">✓</span> Social Feed, Profiles & Creator Pages</li>
-            <li><span class="check">✓</span> Groups, Communities & Real-time Chat</li>
-            <li><span class="check">✓</span> Admin Dashboard, Moderation & Analytics</li>
+            <li><span class="check">✓</span> Creator Discovery, Brand Profiles & Media Kits</li>
+            <li><span class="check">✓</span> Campaign Briefs, Deliverables & Content Approval</li>
+            <li><span class="check">✓</span> Contracts, Payments, Tracking Links & Analytics</li>
           </ul>
         </div>
 
-        <div class="mockup-area" aria-label="Social networking platform interface preview">
+        <div class="mockup-area" aria-label="Influencer and brand collaboration platform interface preview">
           <div class="laptop">
             <div class="laptop-screen">
               <div class="app-topbar">
-                <span>⌘ SocialConnect</span>
+                <span>✦ CollabHub</span>
                 <span class="searchbar"></span>
                 <span>● ● ●</span>
               </div>
@@ -889,8 +1163,8 @@
                     <div class="avatar-row">
                       <span class="avatar orange"></span>
                       <div>
-                        <strong>Aruna Space</strong>
-                        <span>Community Admin</span>
+                        <strong>Bintang Campaigns</strong>
+                        <span>Brand Campaign Admin</span>
                       </div>
                     </div>
                     <div class="menu-line"></div>
@@ -905,10 +1179,10 @@
 
                 <section class="feed-panel" aria-label="Social feed preview">
                   <div class="story-list">
-                    <div class="story">Story</div>
-                    <div class="story">Live</div>
-                    <div class="story">Event</div>
-                    <div class="story">Group</div>
+                    <div class="story">Brief</div>
+                    <div class="story">Pitch</div>
+                    <div class="story">Deal</div>
+                    <div class="story">Report</div>
                   </div>
 
                   <div class="composer">
@@ -923,8 +1197,8 @@
                     <div class="avatar-row">
                       <span class="avatar green"></span>
                       <div>
-                        <strong>Digital Creator Hub</strong>
-                        <span>Shared a new community update</span>
+                        <strong>Creator Marketplace</strong>
+                        <span>New campaign proposal submitted</span>
                       </div>
                     </div>
                     <div class="post-media"></div>
@@ -934,22 +1208,14 @@
 
                 <aside class="right-panel">
                   <div class="panel-head">
-                    <span>People to Follow</span>
-                    <span class="create-btn">+ Invite</span>
+                    <span>Matched Creators</span>
+                    <span class="create-btn">+ Add</span>
                   </div>
                   <div class="suggestion-list">
-                    <div class="suggestion"><span class="avatar small purple"></span>
-                      <div><strong>Visual Works</strong><span>Product Designer</span></div>
-                    </div>
-                    <div class="suggestion"><span class="avatar small orange"></span>
-                      <div><strong>CodeCraft</strong><span>Developer Group</span></div>
-                    </div>
-                    <div class="suggestion"><span class="avatar small green"></span>
-                      <div><strong>Marketing Lab</strong><span>Business Community</span></div>
-                    </div>
-                    <div class="suggestion"><span class="avatar small"></span>
-                      <div><strong>Startup Talks</strong><span>Trending Group</span></div>
-                    </div>
+                    <div class="suggestion"><span class="avatar small purple"></span><div><strong>Alya Beauty</strong><span>Nano Creator</span></div></div>
+                    <div class="suggestion"><span class="avatar small orange"></span><div><strong>Rafi Tech</strong><span>Gadget Reviewer</span></div></div>
+                    <div class="suggestion"><span class="avatar small green"></span><div><strong>Naya Travel</strong><span>Lifestyle Creator</span></div></div>
+                    <div class="suggestion"><span class="avatar small"></span><div><strong>Dito Food</strong><span>Content Creator</span></div></div>
                   </div>
                 </aside>
               </div>
@@ -959,7 +1225,7 @@
 
           <div class="phone">
             <div class="phone-screen">
-              <div class="phone-header"><span>Social</span><span>● ●</span></div>
+              <div class="phone-header"><span>Collab</span><span>● ●</span></div>
               <div class="phone-story-row">
                 <span class="phone-story"></span>
                 <span class="phone-story"></span>
@@ -982,49 +1248,42 @@
       <div class="container">
         <div class="section-header center">
           <div class="section-kicker">Core Features</div>
-          <h2 class="section-title">Everything needed to launch your own social platform.</h2>
+          <h2 class="section-title">Everything needed to manage influencer campaigns and brand partnerships.</h2>
           <p class="section-desc">
-            From user onboarding to real-time community interaction, the platform can be customized for niche
-            communities, professional networks, creator platforms, or private organizations.
+            From creator discovery to campaign briefs, proposal workflows, content approvals, contracts, payments, tracking links, and reporting, the platform can be customized for agencies, brands, and creator networks.
           </p>
         </div>
 
         <div class="feature-grid">
           <article class="feature-card">
-            <div class="feature-icon">📰</div>
-            <h3>Social Feed</h3>
-            <p>Personalized timeline with posts, photos, videos, reactions, comments, shares, hashtags, and trending
-              content.</p>
+            <div class="feature-icon">🔎</div>
+            <h3>Creator Marketplace</h3>
+            <p>Discover influencers by niche, audience, engagement, location, rate card, portfolio, and brand-fit scoring.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">👤</div>
-            <h3>User Profiles</h3>
-            <p>Custom user profiles, creator pages, follow system, bio, media gallery, privacy settings, and activity
-              history.</p>
+            <div class="feature-icon">📣</div>
+            <h3>Campaign Briefs</h3>
+            <p>Create campaign briefs, invite creators, manage proposals, set deliverables, deadlines, and campaign goals.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">👥</div>
-            <h3>Groups & Communities</h3>
-            <p>Create public or private groups with member roles, discussion spaces, events, announcements, and group
-              moderation.</p>
+            <div class="feature-icon">🧾</div>
+            <h3>Media Kit & Portfolio</h3>
+            <p>Showcase creator profiles, audience insights, past collaborations, content samples, and pricing packages.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">💬</div>
-            <h3>Real-time Chat</h3>
-            <p>Support private messaging, group chat, typing indicators, read status, media sharing, and live
-              notification updates.</p>
+            <div class="feature-icon">✅</div>
+            <h3>Content Approval</h3>
+            <p>Review drafts, approve campaign content, request revisions, and track submission status in one workflow.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">🔔</div>
-            <h3>Notification System</h3>
-            <p>Notify users about likes, comments, followers, mentions, group activity, messages, and important platform
-              updates.</p>
+            <div class="feature-icon">💳</div>
+            <h3>Contracts & Payments</h3>
+            <p>Manage partnership agreements, invoices, milestones, payment status, and creator compensation history.</p>
           </article>
           <article class="feature-card">
-            <div class="feature-icon">🛡</div>
-            <h3>Moderation & Safety</h3>
-            <p>Admin tools for reports, blocked content, user review, community rules, activity monitoring, and platform
-              protection.</p>
+            <div class="feature-icon">📊</div>
+            <h3>Performance Analytics</h3>
+            <p>Monitor reach, clicks, engagement, conversions, ROI, campaign progress, and creator performance reports.</p>
           </article>
         </div>
       </div>
@@ -1034,20 +1293,19 @@
       <div class="container split-grid">
         <div class="stat-card">
           <div class="stat-grid">
-            <div class="stat-item"><strong>Feed</strong><span>Personalized content timeline</span></div>
-            <div class="stat-item"><strong>Chat</strong><span>Real-time private and group messaging</span></div>
-            <div class="stat-item"><strong>CMS</strong><span>Admin dashboard and moderation</span></div>
-            <div class="stat-item"><strong>API</strong><span>Scalable backend integration</span></div>
+            <div class="stat-item"><strong>Creators</strong><span>Searchable profiles and media kits</span></div>
+            <div class="stat-item"><strong>Campaigns</strong><span>Brief, pitch, and approval workflows</span></div>
+            <div class="stat-item"><strong>Deals</strong><span>Contracts, invoices, and payments</span></div>
+            <div class="stat-item"><strong>Reports</strong><span>Reach, clicks, and ROI analytics</span></div>
           </div>
         </div>
 
         <div>
           <div class="section-header">
             <div class="section-kicker">Platform Modules</div>
-            <h2 class="section-title">Flexible modules for web, mobile, and admin dashboard.</h2>
+            <h2 class="section-title">Flexible modules for creator discovery, campaigns, payments, and reporting.</h2>
             <p class="section-desc">
-              The platform can be developed as a complete product or module-by-module based on your community and
-              business requirements.
+              The platform can be developed as a complete collaboration product or module-by-module based on your agency workflow, brand partnership model, and creator network.
             </p>
           </div>
 
@@ -1055,33 +1313,29 @@
             <div class="module-item">
               <div class="module-number">01</div>
               <div>
-                <h4>User & Profile Management</h4>
-                <p>Registration, login, profile customization, privacy settings, followers, roles, and access control.
-                </p>
+                <h4>Creator & Brand Profile Management</h4>
+                <p>Registration, login, creator profiles, brand accounts, media kits, portfolios, rate cards, verification, and permissions.</p>
               </div>
             </div>
             <div class="module-item">
               <div class="module-number">02</div>
               <div>
-                <h4>Post, Feed & Media Management</h4>
-                <p>Create posts, upload media, manage hashtags, comments, reactions, shares, saved posts, and content
-                  visibility.</p>
+                <h4>Campaign Brief & Proposal Workflow</h4>
+                <p>Create briefs, invite creators, submit proposals, negotiate offers, assign deliverables, and manage deadlines.</p>
               </div>
             </div>
             <div class="module-item">
               <div class="module-number">03</div>
               <div>
-                <h4>Community & Messaging System</h4>
-                <p>Groups, communities, private messages, group chat, mentions, notifications, and real-time updates.
-                </p>
+                <h4>Content Review, Approval & Deliverables</h4>
+                <p>Upload drafts, collect feedback, approve content, manage revisions, track deliverables, and organize campaign assets.</p>
               </div>
             </div>
             <div class="module-item">
               <div class="module-number">04</div>
               <div>
-                <h4>Admin Dashboard & Analytics</h4>
-                <p>Moderation queue, user reports, platform insights, engagement analytics, settings, and operational
-                  overview.</p>
+                <h4>Contract, Payment & Performance Dashboard</h4>
+                <p>Track agreements, invoices, payment milestones, campaign engagement, link clicks, conversions, ROI, and creator performance.</p>
               </div>
             </div>
           </div>
@@ -1092,16 +1346,21 @@
     <section class="pricing" id="contact">
       <div class="container">
         <div class="cta-box">
-          <h2>Ready to create your own social network?</h2>
+          <h2>Ready to launch your influencer collaboration platform?</h2>
           <p>
-            Build a custom social networking platform with scalable architecture, modern UI, community features, and
-            business-ready admin tools.
+            Build a custom influencer-brand collaboration platform with creator marketplace, campaign management, approval workflows, contracts, payments, tracking, and analytics dashboard.
           </p>
           <a href="mailto:hello@bintangdata.co.id" class="btn btn-primary">Start Consultation</a>
         </div>
       </div>
     </section>
   </main>
-</body>
 
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 bintangdata. All rights reserved.</span>
+      <span>Influencer & Brand Collaboration Platform Development</span>
+    </div>
+  </footer>
+</body>
 </html>

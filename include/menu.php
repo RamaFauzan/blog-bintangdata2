@@ -37,19 +37,19 @@
     <a href="video-sharing-live-streaming-platform" class="dropdown-link">
         <div class="drop-title">Video Sharing & Live Streaming Platform</div>
     </a>
-    <a href="#" class="dropdown-link">
+    <a href="social-networking-platform" class="dropdown-link">
         <div class="drop-title">Social Networking Platform</div>
     </a>
-    <a href="#" class="dropdown-link">
+    <a href="membership-community-platform" class="dropdown-link">
         <div class="drop-title">Membership Community Platform</div>
     </a>
-    <a href="#" class="dropdown-link">
+    <a href="influencer-brand-collaboration-platform" class="dropdown-link">
         <div class="drop-title">Influencer & Brand Collaboration Platform</div>
     </a>
-    <a href="#" class="dropdown-link">
+    <a href="news-media-publishing-platform" class="dropdown-link">
         <div class="drop-title">News & Media Publishing Platform</div>
     </a>
-    <a href="#" class="dropdown-link">
+    <a href="social-commerce-professional-platform" class="dropdown-link">
         <div class="drop-title">Social Commerce & Professional Platform</div>
     </a>
 </div>
